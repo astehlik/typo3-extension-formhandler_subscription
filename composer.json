@@ -14,5 +14,10 @@
 	"suggest": {
 		"friendsoftypo3/tt-address": "Store subscriber address records.",
 		"de-swebhosting-typo3-extension/tinyurls": "Generate beautified activation URLs."
+	},
+	"autoload": {
+		"psr-4": {
+			"Tx\\FormhandlerSubscription\\": "Classes/"
+		}
 	}
 }
