@@ -329,7 +329,7 @@ class GenerateAuthCodeDB extends FormhandlerAuthCodeFinisher {
 		}
 
 		if (!isset($this->tinyUrlApi)) {
-			$this->tinyUrlApi = GeneralUtility::makeInstance('Tx_Tinyurls_TinyUrl_Api');
+			$this->tinyUrlApi = GeneralUtility::makeInstance(\Tx\Tinyurls\TinyUrl\Api::class);
 		}
 
 		$this->tinyUrlApi->setDeleteOnUse(1);
