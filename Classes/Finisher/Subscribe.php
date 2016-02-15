@@ -11,7 +11,7 @@ namespace Tx\FormhandlerSubscription\Finisher;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use Tx_Formhandler_AbstractFinisher as FormhandlerAbstractFinisher;
+use Typoheads\Formhandler\Finisher\AbstractFinisher as FormhandlerAbstractFinisher;
 
 /**
  * This finisher checks if a subscriber exists and calls different sub-finishers
@@ -61,7 +61,7 @@ class Subscribe extends FormhandlerAbstractFinisher {
 	 *
 	 * @param array $gp
 	 * @param array $settings
-	 * @return void
+	 * @throws \Exception
 	 */
 	public function init($gp, $settings) {
 
@@ -197,7 +197,7 @@ class Subscribe extends FormhandlerAbstractFinisher {
 				if (is_array($tsConfig) && strlen($className) > 0) {
 					if (intval($this->utilityFuncs->getSingle($tsConfig, 'disable')) !== 1) {
 
-						/** @var \Tx_Formhandler_AbstractComponent $finisher */
+						/** @var \Typoheads\Formhandler\Component\AbstractComponent $finisher */
 						/** @noinspection PhpVoidFunctionResultUsedInspection */
 						$finisher = $this->componentManager->getComponent($className);
 						$tsConfig['config.'] = $this->addDefaultComponentConfig($tsConfig['config.']);

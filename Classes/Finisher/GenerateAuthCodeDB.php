@@ -14,7 +14,7 @@ namespace Tx\FormhandlerSubscription\Finisher;
 use Tx\Authcode\Domain\Enumeration\AuthCodeAction;
 use Tx\FormhandlerSubscription\Exceptions\MissingSettingException;
 use Tx\FormhandlerSubscription\Utils\AuthCodeUtils;
-use Tx_Formhandler_Finisher_GenerateAuthCode as FormhandlerAuthCodeFinisher;
+use Typoheads\Formhandler\Finisher\GenerateAuthCode as FormhandlerAuthCodeFinisher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -64,7 +64,7 @@ class GenerateAuthCodeDB extends FormhandlerAuthCodeFinisher {
 	/**
 	 * Tiny URL API
 	 *
-	 * @var \Tx_Tinyurls_TinyUrl_Api
+	 * @var \Tx\Tinyurls\TinyUrl\Api
 	 */
 	protected $tinyUrlApi;
 
@@ -224,7 +224,7 @@ class GenerateAuthCodeDB extends FormhandlerAuthCodeFinisher {
 	/**
 	 * Injector for tiny URL API
 	 *
-	 * @param $tinyUrlApi \Tx_Tinyurls_TinyUrl_Api
+	 * @param $tinyUrlApi \Tx\Tinyurls\TinyUrl\Api
 	 */
 	public function setTinyUrlApi($tinyUrlApi) {
 		$this->tinyUrlApi = $tinyUrlApi;
@@ -282,6 +282,9 @@ class GenerateAuthCodeDB extends FormhandlerAuthCodeFinisher {
 
 		$this->gp['generated_authCode'] = $authCode;
 
+		/** @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj */
+		$cObj = $this->cObj;
+
 		// Looking for the page, which should be used for the authCode Link:
 		// first look for TS-setting 'authCodePage'
 		// second look for redirect_page-setting
@@ -289,7 +292,7 @@ class GenerateAuthCodeDB extends FormhandlerAuthCodeFinisher {
 		if (isset($this->settings['authCodePage'])) {
 			$authCodePage = $this->utilityFuncs->getSingle($this->settings, 'authCodePage');
 		} else {
-			$authCodePage = $this->utilityFuncs->pi_getFFvalue($this->cObj->data['pi_flexform'], 'redirect_page', 'sMISC');
+			$authCodePage = $this->utilityFuncs->pi_getFFvalue($cObj->data['pi_flexform'], 'redirect_page', 'sMISC');
 		}
 		if (!$authCodePage) {
 			$authCodePage = $GLOBALS['TSFE']->id;
@@ -305,7 +308,7 @@ class GenerateAuthCodeDB extends FormhandlerAuthCodeFinisher {
 		}
 
 		// Create the link, using typolink function, use baseUrl if set, else use t3lib_div::getIndpEnv('TYPO3_SITE_URL')
-		$url = $this->cObj->getTypoLink_URL($authCodePage, $paramsArray);
+		$url = $cObj->getTypoLink_URL($authCodePage, $paramsArray);
 		$tmpArr = parse_url($url);
 		if (empty($tmpArr['scheme'])) {
 			$url = GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . ltrim($url, '/');

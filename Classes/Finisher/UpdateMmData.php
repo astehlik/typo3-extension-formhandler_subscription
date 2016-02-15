@@ -12,7 +12,7 @@ namespace Tx\FormhandlerSubscription\Finisher;
  *                                                                        */
 
 use Tx\FormhandlerSubscription\Utils\AuthCodeUtils;
-use Tx_Formhandler_AbstractFinisher as FormhandlerAbstractFinisher;
+use Typoheads\Formhandler\Finisher\AbstractFinisher as FormhandlerAbstractFinisher;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 

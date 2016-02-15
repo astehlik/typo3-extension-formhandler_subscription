@@ -15,6 +15,8 @@ use Tx\Authcode\Domain\Enumeration\AuthCodeType;
 use Tx\FormhandlerSubscription\Exceptions\InvalidSettingException;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Typoheads\Formhandler\Utility\GeneralUtility as FormhandlerGeneralUtility;
+use Typoheads\Formhandler\Utility\Globals as FormhandlerGlobals;
 
 /**
  * A class providing helper functions for auth codes stored in the database
@@ -62,14 +64,14 @@ class AuthCodeUtils {
 	/**
 	 * Globals of the formhandler extension
 	 *
-	 * @var \Tx_Formhandler_Globals
+	 * @var FormhandlerGlobals
 	 */
 	protected $globals;
 
 	/**
 	 * Formhandler utility functions
 	 *
-	 * @var \Tx_Formhandler_UtilityFuncs
+	 * @var FormhandlerGeneralUtility
 	 */
 	protected $formhandlerUtils;
 
@@ -119,8 +121,8 @@ class AuthCodeUtils {
 		$this->authCodeRepository = $this->objectManager->get('Tx\\Authcode\\Domain\\Repository\\AuthCodeRepository');
 		$this->authCodeRecordRepository = $this->objectManager->get('Tx\\Authcode\\Domain\\Repository\\AuthCodeRecordRepository');
 
-		$this->formhandlerUtils = \Tx_Formhandler_UtilityFuncs::getInstance();
-		$this->globals = \Tx_Formhandler_Globals::getInstance();
+		$this->formhandlerUtils = GeneralUtility::makeInstance(FormhandlerGeneralUtility::class);
+		$this->globals = GeneralUtility::makeInstance(FormhandlerGlobals::class);
 
 		$this->tsfeUser = $GLOBALS['TSFE']->fe_user;
 
@@ -215,7 +217,7 @@ class AuthCodeUtils {
 	 */
 	public function generateAuthCode($row, $action, $table, $uidField, $hiddenField) {
 
-		$authCode = $this->createAuthCode(AuthCodeType::RECORD);
+		$authCode = $this->createAuthCode();
 
 		$authCode->setReferenceTableHiddenField($hiddenField);
 		$authCode->setReferenceTableUidField($uidField);
@@ -432,6 +434,6 @@ class AuthCodeUtils {
 	 * @return \Tx\Authcode\Domain\Model\AuthCode
 	 */
 	protected function createAuthCode() {
-		return $this->objectManager->get('Tx\\Authcode\\Domain\\Model\\AuthCode');
+		return $this->objectManager->get(\Tx\Authcode\Domain\Model\AuthCode::class);
 	}
 }

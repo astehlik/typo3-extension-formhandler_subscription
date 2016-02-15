@@ -11,7 +11,7 @@ namespace Tx\FormhandlerSubscription\View;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use Tx_Formhandler_View_Mail as FormhandlerMailView;
+use Typoheads\Formhandler\View\Mail as FormhandlerMailView;
 
 /**
  * Provides a non htmlspecialchars encoded auth code url marker for plain text mails

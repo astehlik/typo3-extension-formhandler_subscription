@@ -4,14 +4,15 @@
 	"type": "typo3-cms-extension",
 	"license": "GPL-3.0+",
 	"replace": {
+		"typo3-ter/formhandler-subscription": "self.version",
 		"formhandler_subscription": "self.version"
 	},
 	"require": {
-		"typoheads/formhandler": ">=2.0.1",
-		"intera-typo3-extension/authcode": ">=0.1.0"
+		"typo3-ter/formhandler": "^2.1.0",
+		"intera-typo3-extension/authcode": ">=0.2.0"
 	},
 	"suggest": {
-		"tt_address": "Store subscriber address records.",
-		"tinyurls": "Generate beautified activation URLs."
+		"friendsoftypo3/tt-address": "Store subscriber address records.",
+		"de-swebhosting-typo3-extension/tinyurls": "Generate beautified activation URLs."
 	}
 }

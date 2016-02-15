@@ -11,7 +11,7 @@ namespace Tx\FormhandlerSubscription\Controller;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use Tx_Formhandler_Controller_Form as FormhandlerFormController;
+use Typoheads\Formhandler\Controller\Form as FormhandlerFormController;
 
 /**
  * This controller can be used for submitting request via ajax.

@@ -12,7 +12,7 @@ namespace Tx\FormhandlerSubscription\Finisher;
  *                                                                        */
 
 use Tx\FormhandlerSubscription\Utils\AuthCodeUtils;
-use Tx_Formhandler_AbstractFinisher as FormhandlerAbstractFinisher;
+use Typoheads\Formhandler\Finisher\AbstractFinisher as FormhandlerAbstractFinisher;
 
 /**
  * Checks if the submitted uid matches the one that was stored with the submitted

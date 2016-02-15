@@ -14,7 +14,7 @@ namespace Tx\FormhandlerSubscription\PreProcessor;
 use Tx\Authcode\Domain\Enumeration\AuthCodeAction;
 use Tx\Authcode\Domain\Enumeration\AuthCodeType;
 use Tx\FormhandlerSubscription\Utils\AuthCodeUtils;
-use Tx_Formhandler_PreProcessor_ValidateAuthCode as FormhandlerValidateAuthCodePreProcessor;
+use Typoheads\Formhandler\PreProcessor\ValidateAuthCode as FormhandlerValidateAuthCodePreProcessor;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
