@@ -29,11 +29,11 @@ class AuthCodeMailView extends FormhandlerMailView {
 	 * @param $values
 	 * @param int $level
 	 * @param string $prefix
+	 * @param bool $doEncode
 	 * @return array array containing the value markers (###value_XXX###)
 	 */
-	protected function getValueMarkers($values, $level = 0, $prefix = 'value_') {
-
-		$markers = parent::getValueMarkers($values, $level, $prefix);
+	protected function getValueMarkers($values, $level = 0, $prefix = 'value_', $doEncode = true) {
+		$markers = parent::getValueMarkers($values, $level, $prefix, $doEncode);
 
 		if (array_key_exists('###value_authCodeUrl###', $markers)) {
 			$markers['###value_authCodeUrlPlain###'] = htmlspecialchars_decode($markers['###value_authCodeUrl###']);
